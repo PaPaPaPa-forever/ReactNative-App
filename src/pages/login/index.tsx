@@ -1,19 +1,55 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, Image, TextInput } from "react-native";
 import { style } from "./style";
+import Logo from "../../assets/logo.png";
+import { themas } from "../../global/themes";
+import { MaterialIcons } from '@expo/vector-icons';
 
-export default function login() {
+export default function Login() {
     return (
-        < View style={style.container}>
+        <View style={style.container}>
             <View style={style.boxTop}>
-                <Text>Top</Text>
+                <Image
+                    source={Logo}
+                    style={style.logo}
+                    resizeMode="contain"
+                />
+                <Text style={style.text}>Bem vindo de volta!</Text>
             </View>
+
             <View style={style.boxMid}>
-                <Text>Mid</Text>
+                <Text style={style.titleInput}>Endereço de E-mail:</Text>
+                <View style={style.boxInput}>
+                    <TextInput
+                        style={style.input}
+                        placeholder="Digite seu e-mail"
+                        keyboardType="email-address"
+                    />
+                    <MaterialIcons
+                        name="email"
+                        size={20}
+                        color={themas.colors.gray}
+                    />
+                </View>
+
+                <Text style={style.titleInput}>Senha:</Text>
+                <View style={style.boxInput}>
+                    <TextInput
+                        style={style.input}
+                        placeholder="Digite sua senha"
+                        secureTextEntry
+                    />
+                    <MaterialIcons
+                        name="lock"
+                        size={20}
+                        color={themas.colors.gray}
+                    />
+                </View>
             </View>
-            <View style = {style.boxBotton}>
-                <Text>Botton</Text>
+
+            <View style={style.boxBotton}>
+                {/* Botões ou outras ações */}
             </View>
         </View>
-    )
+    );
 }
