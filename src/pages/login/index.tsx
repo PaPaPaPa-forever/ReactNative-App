@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Image, TextInput } from "react-native";
+import { Text, View, Image, TextInput, TouchableHighlight } from "react-native";
 import { style } from "./style";
 import Logo from "../../assets/logo.png";
 import { themas } from "../../global/themes";
@@ -48,8 +48,11 @@ export default function Login() {
             </View>
 
             <View style={style.boxBotton}>
-                {/* Botões ou outras ações */}
+                <TouchableHighlight style={style.button}>
+                    <Text style={style.textButton}>Entrar</Text>
+                </TouchableHighlight>
             </View>
+            <Text style={style.textBotton}>Não tem conta? <Text style={{color: themas.colors.primary}}>Crie agora!</Text></Text>
         </View>
     );
 }
