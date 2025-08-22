@@ -1,11 +1,48 @@
-import React from "react";
-import { Text, View, Image, TextInput, TouchableHighlight } from "react-native";
+import React, { useState } from "react";
+import {
+    Text,
+    View,
+    Image,
+    TextInput,
+    TouchableOpacity,
+    Alert,
+    ActivityIndicator,
+    TouchableHighlight // ✅ Importado corretamente
+} from "react-native";
+
 import { style } from "./style";
 import Logo from "../../assets/logo.png";
 import { themas } from "../../global/themes";
 import { MaterialIcons } from '@expo/vector-icons';
+import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 
 export default function Login() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    async function getLogin() {
+        try {
+            setLoading(true);
+            if (!email || !password) {
+                setLoading(false);
+                return Alert.alert('Atenção', 'Informe os campos obrigatórios!');
+            }
+
+            setTimeout(() => {
+                if (email === 'luan@gmail.com' && password === '12345678') {
+                    Alert.alert('Logado com sucesso!');
+                } else {
+                    Alert.alert('Usuário não encontrado!');
+                }
+                setLoading(false);
+            }, 3000);
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+        }
+    }
+
     return (
         <View style={style.container}>
             <View style={style.boxTop}>
@@ -22,8 +59,11 @@ export default function Login() {
                 <View style={style.boxInput}>
                     <TextInput
                         style={style.input}
-                        placeholder="Digite seu e-mail"
+                        placeholder="Digite seu e-mail" // ✅ Placeholder
                         keyboardType="email-address"
+                        autoCapitalize="none"
+                        value={email}
+                        onChangeText={setEmail}
                     />
                     <MaterialIcons
                         name="email"
@@ -36,8 +76,10 @@ export default function Login() {
                 <View style={style.boxInput}>
                     <TextInput
                         style={style.input}
-                        placeholder="Digite sua senha"
-                        secureTextEntry
+                        placeholder="Digite sua senha" // ✅ Placeholder
+                        secureTextEntry // ✅ Esconde a senha
+                        value={password}
+                        onChangeText={setPassword}
                     />
                     <MaterialIcons
                         name="lock"
@@ -48,11 +90,17 @@ export default function Login() {
             </View>
 
             <View style={style.boxBotton}>
-                <TouchableHighlight style={style.button}>
-                    <Text style={style.textButton}>Entrar</Text>
-                </TouchableHighlight>
+                <TouchableOpacity style={style.button} onPress={() => getLogin()}>
+                    {
+                        loading ? <ActivityIndicator color={'#ffff'} size={"small"} /> : 
+                        <Text style={style.textButton}>Entrar</Text>
+                    }
+                </TouchableOpacity>
             </View>
-            <Text style={style.textBotton}>Não tem conta? <Text style={{color: themas.colors.primary}}>Crie agora!</Text></Text>
+
+            <Text style={style.textBotton}>
+                Não tem conta? <Text style={{ color: themas.colors.primary }}>Crie agora!</Text>
+            </Text>
         </View>
     );
 }

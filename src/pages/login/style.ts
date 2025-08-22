@@ -87,5 +87,6 @@ export const style = StyleSheet.create({
     textBotton: {
         fontSize: 16,
         color: themas.colors.gray,
-    }
+    },
+    
 });
