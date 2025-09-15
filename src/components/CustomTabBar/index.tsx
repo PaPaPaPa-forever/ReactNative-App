@@ -1,19 +1,40 @@
 import React from "react";
-import { Text, Touchable, TouchableOpacity } from "react-native";
-import { style } from "../CustomTabBar/style";
+import { Text, TouchableOpacity, View } from "react-native";
+import { style } from "./style";
+import { AntDesign, FontAwesome, Entypo, MaterialIcons } from '@expo/vector-icons';
 
 export default ({ state, navigation }: any) => {
     return (
-        <Text>
-            <TouchableOpacity>
-                <Text>Esquerda</Text>
+        <View style={style.tabArea}>
+            <TouchableOpacity style={style.tabItem}>
+                <AntDesign
+                    name="bars"
+                    style={{ fontSize: 32 }}
+                />
             </TouchableOpacity>
-            <TouchableOpacity>
-                <Text>Centro</Text>
+            <TouchableOpacity style={style.tabItemButton}>
+                <View style={{ width: '100%', left: 10, top: 4 }}>
+                    <Entypo
+                        name="plus"
+                        size={40}
+                        color={'#FFF'}
+                    />
+                </View>
+                <View style={{ flexDirection: 'row-reverse', width: '100%', right: 10, bottom: 10 }}>
+                    <MaterialIcons
+                        name="edit"
+                        size={30}
+                        color={'#FFF'}
+                        
+                    />
+                </View>
             </TouchableOpacity>
-            <TouchableOpacity>
-                <Text>Direita</Text>
+            <TouchableOpacity style={style.tabItem}>
+                <FontAwesome
+                    name="user"
+                    style={{ fontSize: 32 }}
+                />
             </TouchableOpacity>
-        </Text>
+        </View>
     )
 }
