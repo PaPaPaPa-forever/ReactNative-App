@@ -4,7 +4,7 @@ import {
     Text, View, Image, TextInput, TouchableOpacity,
     Alert, ActivityIndicator
 } from "react-native";
-import { style } from "../login/style";
+import { style } from "./style";
 import Logo from "../../assets/logo.png";
 import { MaterialIcons, Octicons } from '@expo/vector-icons'
 import { themas } from "../../global/themes"
@@ -29,7 +29,7 @@ export default function Login() {
                 return Alert.alert('Atenção', 'Informe os campos obrigatórios!');
             }
 
-            navigation.navigate("BottomRoutes")
+            navigation.reset({ routes: [{ name: "BottomRoutes" }] })
 
             console.log("Logou!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
