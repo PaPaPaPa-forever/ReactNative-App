@@ -10,7 +10,7 @@ import { MaterialIcons, Octicons } from '@expo/vector-icons'
 import { themas } from "../../global/themes"
 import { Input } from "../../components/input";
 import { Button } from "../../components/Button";
-import { useNavigation, NavigationProp } from '@react-navigation/native'
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 import BottomRoutes from "../../routes/bottom.routes";
 
 export default function Login() {
