@@ -1,8 +1,9 @@
 import React from "react";
-import { Text, View, FlatList, TouchableOpacity, Touchable } from "react-native";
+import { Text, View, FlatList, TouchableOpacity } from "react-native";
 import { style } from "./styles";
 import { Input } from "../../components/input";
 import { MaterialIcons } from '@expo/vector-icons';
+import { Ball } from "../../components/Ball";
 
 type PropCard = {
     item: number,
@@ -14,22 +15,23 @@ type PropCard = {
 const data: Array<PropCard> = [
     {
         item: 0,
-        title: 'Realizar Lição de casa',
-        description: 'Página 18 ao 28',
+        title: 'Realizar lição de casa',
+        description: 'página 18 ao 28',
         flag: 'urgente'
     },
+
     {
         item: 1,
         title: 'Passear com o cachorro',
-        description: 'Página 18 ao 28',
+        description: 'página 18 ao 28',
         flag: 'urgente'
     },
     {
         item: 2,
-        title: 'Sair para comer sortão',
-        description: 'Página 18 ao 28',
+        title: 'Sair pra tomar um sorvetão',
+        description: 'página 18 ao 28',
         flag: 'urgente'
-    },
+    }
 ]
 export default function List() {
 
@@ -37,10 +39,12 @@ export default function List() {
         return (
             <TouchableOpacity style={style.card}>
                 <View style={style.rowCard}>
-                    {/* <Ball /> */}
-                    <View>
-                        <Text>{item.title}</Text>
-                        <Text>{item.description}</Text>
+                    <View style={style.rowCardLeft}>
+                        <Ball color="red" />
+                        <View>
+                            <Text>{item.title}</Text>
+                            <Text>{item.description}</Text>
+                        </View>
                     </View>
                     {/* <Flag /> */}
                 </View>
@@ -60,11 +64,11 @@ export default function List() {
                 </View>
             </View>
             <View style={style.boxList}>
-                <FlatList 
+                <FlatList
                     data={data}
-                    style={{marginTop: 40, paddingHorizontal: 30}}
+                    style={{ marginTop: 40, paddingHorizontal: 30 }}
                     keyExtractor={(item, index) => item.item.toString()}
-                    renderItem={({item, index}) => {return(_renderCard(item))}}
+                    renderItem={({ item, index }) => { return (_renderCard(item)) }}
                 />
             </View>
         </View>
